@@ -1,0 +1,36 @@
+@model RegisterModel
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Регистрация</title>
+</head>
+<body>
+    <h1>Регистрация пользователя</h1>
+    @if (TempData["Success"] != null)
+    {
+        <p>@TempData["Success"]</p>
+    }
+    <form asp-controller="Registration" asp-action="Index" method="post" novalidate>
+        <div asp-validation-summary="All" style="color: darkred"></div>
+        <p>
+            <label asp-for="Name">Имя — не менее 3 букв</label><br />
+            <input asp-for="Name" />
+        </p>
+        <p>
+            <label asp-for="Email">Электронная почта</label><br />
+            <input asp-for="Email" type="email" />
+        </p>
+        <p>
+            <label asp-for="Password">Пароль — не менее 8 символов, буквы и цифры</label><br />
+            <input asp-for="Password" type="password" autocomplete="new-password" />
+        </p>
+        <p>
+            <label asp-for="ConfirmPassword">Подтверждение пароля</label><br />
+            <input asp-for="ConfirmPassword" type="password" autocomplete="new-password" />
+        </p>
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,46 @@
+@baseUrl = http://localhost:5000
+
+### Создать пользователя — 201. Используйте ID из ответа в следующих запросах.
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{"name":"Анна","email":"anna@example.com","password":"Password123","confirmPassword":"Password123"}
+
+### Все пользователи, включая зарегистрированных через форму — 200
+GET {{baseUrl}}/api/users
+
+### Пользователь по ID — 200
+GET {{baseUrl}}/api/users/1
+
+### Обновление — 204
+PUT {{baseUrl}}/api/users/1
+Content-Type: application/json
+
+{"name":"Мария","email":"maria@example.com"}
+
+### Проверить изменение
+GET {{baseUrl}}/api/users/1
+
+### Ошибки всех полей — 400
+POST {{baseUrl}}/api/users
+Content-Type: application/json
+
+{"name":"А1","email":"anna@example","password":"123","confirmPassword":"456"}
+
+### Неверные данные при обновлении — 400
+PUT {{baseUrl}}/api/users/1
+Content-Type: application/json
+
+{"name":"12","email":"invalid"}
+
+### Неверный ID — 400
+GET {{baseUrl}}/api/users/0
+
+### Несуществующий ID — 404
+GET {{baseUrl}}/api/users/999999
+
+### Удаление — 204
+DELETE {{baseUrl}}/api/users/1
+
+### После удаления — 404
+GET {{baseUrl}}/api/users/1
